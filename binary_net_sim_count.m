@@ -327,10 +327,17 @@ for i_size = 1:length(Nvec);            % loop through sizes of nets
         '   frac_stop ', num2str(frac_stops(i_size)) ]);
     
     disp(['frac_on',num2str(frac_on)])
+    
+    kon = [2:N];
+    plot(kon,sum(sum(squeeze(state_array(3:end,:,:,2)),3),2)/num_nets,'x')
+
+
 end % next i_size
 
 
 filename = ['binary_count2_N',num2str(N),'_connflag_',num2str(gaussian_conn_flag), ...
     '_s',num2str(s),'_g',num2str(g),'_rnd',num2str(ran_seed),'.mat'];
 save(filename,'-v7.3')
+
+
 toc
