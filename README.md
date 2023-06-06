@@ -4,7 +4,9 @@ Codes for our paper on "Multistability in neural systems with random cross-conne
 The repository includes separate codes for simulations of finite systems, for mean-field analysis of infinite systems, and for solving approximate analyses of finite systems with binary neural response functions.
 
 
-Instructions to create paper figures: 
+Instructions to create Figures 1-4 in the paper:
+
+**Download figure-code.zip and unzip to find these MATLAB codes**
 
 ## Figure 1. Single-unit response functions, f(x), produce bistability at s=1
 - ./FI_curves.m produces panels A-C
