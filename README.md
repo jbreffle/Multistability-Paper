@@ -29,6 +29,17 @@ Instructions to create Figures 1-4 in the paper:
         - Set options as instructed in the "%% Sim options" section
 - ./grid_sim_plotting.m plots the data produced by the simulation codes
 
+## Figure 6: Infinite limit calculations with logistic f-I curves
+- all codes are found in the zipped file "Inf_Logistic_Codes"
+- the code "inf_logistic_grid.m" should run if the other functions are in the same directory
+- the code "plot_phase_diagram.m" should produce the figure so long as its input file is adjusted to match the output file of "inf_logistic_grid.m"
+
+## Figure 8: Probability of multistability in finite circuits
+- the code "erf_code_binary_units1.m" produces continuous analytic curves
+- the code "binary_net_sim_count.m" produces simulated data points
+
+## Figure 9: 
+
 ## Supplemental Figure 1: The example network in Fig. 2 is a typical random network
 - ./example_net_dynamics.m produces all panels with the setting "figSim = 'fig2';"
 
