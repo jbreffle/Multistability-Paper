@@ -29,6 +29,9 @@ Instructions to create Figures 1-4 in the paper:
         - Set options as instructed in the "%% Sim options" section
 - ./grid_sim_plotting.m plots the data produced by the simulation codes
 
+## Figure 5: Zipf's Law from data and from sampling a log-normal distribution
+- all codes are found in the zipped file "Zipf_Figure_Codes"
+
 ## Figure 6: Infinite limit calculations with logistic f-I curves
 - all codes are found in the zipped file "Inf_Logistic_Codes"
 - the code "inf_logistic_grid.m" should run if the other functions are in the same directory
