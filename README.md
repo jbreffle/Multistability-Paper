@@ -41,7 +41,9 @@ Instructions to create Figures 1-4 in the paper:
 - the code "erf_code_binary_units1.m" produces continuous analytic curves
 - the code "binary_net_sim_count.m" produces simulated data points
 
-## Figure 9: 
+## Figure 9: Infinite limit calculations for binary response curves
+- the code "erfApprox_maxk_infN.m" produces the analytic results
+- the binary simulation code of Figure 5 or 8 can be adapted to produce Fig 9C
 
 ## Supplemental Figure 1: The example network in Fig. 2 is a typical random network
 - ./example_net_dynamics.m produces all panels with the setting "figSim = 'fig2';"
