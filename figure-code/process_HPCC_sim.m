@@ -17,10 +17,10 @@ HPCCresultsFolder = './results/genTanh_N50_nNets1_nTrials200_maxT10k_sig1_sameRN
 
 %% Set up for processing
 warning('off','MATLAB:dispatcher:UnresolvedFunctionHandle')
-paramFile = dir([targetFile filesep 'runParams_job*.mat']);
+paramFile = dir([HPCCresultsFolder filesep 'runParams_job*.mat']);
 load([paramFile.folder, filesep, paramFile.name]);
 clear finalStatesID integrationTime numUnitsOn matRNGs stopCriterion tempFinalSTates tempFinalStates IC W allMats
-simResultsFilenames = dir([targetFile '/*task*.mat']);
+simResultsFilenames = dir([HPCCresultsFolder '/*task*.mat']);
 numNets = numel(simResultsFilenames);
 
 %% Initialize final matrices
@@ -42,7 +42,7 @@ for ithNet = 1:numNets
         netDir = simResultsFilenames(ithNet);
         S = load([netDir.folder, filesep, netDir.name]);
     catch
-        netDir = dir([targetFile, '*_task', num2str(ithNet), '_*.mat']);
+        netDir = dir([HPCCresultsFolder, '*_task', num2str(ithNet), '_*.mat']);
         S = load([netDir.folder, filesep, netDir.name]);
     end
     

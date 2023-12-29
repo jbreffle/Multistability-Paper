@@ -3,10 +3,7 @@
 ## Description
 
 This repository contains all code necessary to produce the figures of the paper:
-
-```text
-Breffle J, Mokashe S, Qiu S, Miller P. 2023. Multistability in neural systems with random cross-connections. Biol Cybern. 117(6):485–506. doi:10.1007/s00422-023-00981-w.
-```
+> Breffle J, Mokashe S, Qiu S, Miller P. 2023. Multistability in neural systems with random cross-connections. Biol Cybern. 117(6):485–506. doi:10.1007/s00422-023-00981-w.
 
 Journal link: <https://doi.org/10.1007/s00422-023-00981-w> \
 Link to publicly available view-only version: <https://rdcu.be/dujJP>
@@ -60,15 +57,30 @@ The repository includes separate codes for simulations of finite systems, for me
 - ```erfApprox_maxk_infN.m``` produces the analytic results
 - the binary simulation code of Figure 5 or 8 can be adapted to produce Figure 9C
 
-### Supplemental Figure 1: The example network in Fig. 2 is a typical random network
+## Appendix figures
 
-- ```./figure-code/example_net_dynamics.m``` produces all panels with the setting ```figSim='fig2';```
-
-### Supplemental Figure 2: The dynamic regimes of individual networks changes as g is scaled
+### Figure 10: The dynamic regimes of individual networks changes as $g$ is scaled
 
 - ```./figure-code/simulation-code/sim_rand_nets.m``` produces the data with appropriate parameter selection
   - Set options as instructed in the "%% Sim options" section
 - ```./figure-code/same_nets_across_g_classes.m``` plots the data for panels B-F
+
+### Figure 11: Simulation results for networks with increasing $N$ converge to the infinite-$N$ analytic results
+
+- ```./figure-code/rmsrates_across_g.m``` creates each panel individually
+  - Change the value of ```figSim``` to create each panel
+
+### Figure 12: Phase diagram for networks with tanh units
+
+- Created as in Figure 6 with the specified parameter values
+
+### Figure 13: Impact of the criterion for multistability in networks with logistic units
+
+- Created as in Figure 6 with the specified parameter values
+
+### Figure 14: Impact of the criterion for multistability in networks with tanh units
+
+- Created as in Figure 6 with the specified parameter values
 
 ## Usage notes
 

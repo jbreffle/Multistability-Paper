@@ -19,7 +19,7 @@ addpath('./functions')
 
 %% Select Figure to plot
 
-figSim = 'fig3'; % Select 'fig2' or 'fig3'
+figSim = 'fig2'; % Select 'fig2' or 'fig3'
 
 
 %% Simulation parameters
@@ -209,6 +209,44 @@ for initSeed = initSeedVec
     box off
     myPlotSettings(width=3, height=2)
     
+    % Calculate input distribution and compare to expected large-N dist.
+    if isequal(figSim, 'fig2')
+        myPlotSettings(width=2.0, height=1.5, ttlfsz=1.0)
+        final_rates = transFun(y(end,:)');
+        final_cross_inputs = g.*(W*final_rates);
+        x_norm = linspace(-max(abs(final_cross_inputs))*1.25, max(abs(final_cross_inputs))*1.25, 100);
+        expected_var = g^2 * mean(final_rates.^2);
+        norm_mean = 0; 
+        norm_std = sqrt(expected_var);
+        disp(['STD is ', num2str(norm_std)])
+        p_norm = cdf(makedist('Normal', 'mu', norm_mean, 'sigma',norm_std),x_norm);
+        [~,kstest_pval,ksstat] = kstest(final_cross_inputs./sqrt(expected_var));
+        % Plot
+        cm = colormap(turbo(numel(unique(initSeedVec))));
+        figure; hold on;
+        RMSrates_titles = {'Quiescent', 'Stable active', 'Stable active', 'Chaos', 'Cycle', 'Cycle'};
+        title(RMSrates_titles{find(initSeedVec==initSeed)}, 'fontweight', 'normal')
+        disp({['Trial ' num2str(find(initSeed == initSeedVec)), ...
+            ', pval=', num2str(kstest_pval, 3)]})
+        plot(x_norm, p_norm, 'k:')
+        [f2,x2]=ecdf(final_cross_inputs);
+        x2_extended = [ max(abs(x2))*-2; x2; max(abs(x2))*2];
+        f2_extended = [0; f2; 1];
+        plot(x2_extended, f2_extended, 'Color', cm(find(initSeedVec==initSeed),:))
+        xlabel('Input'); ylabel('cdf (over units)')
+        leg1 = legend('Expected', 'Actual', 'location', 'best', 'box', 'off');
+        leg1.ItemTokenSize = [8, 12];
+        if initSeed==0
+            xlim(0.01*[-1, 1])
+        else
+            xlim(5.5*[-1, 1])
+        end
+        ylim_temp=get(gca,'ylim'); xlim_temp=get(gca,'xlim');
+        text(xlim_temp(1)*0.9, ylim_temp(2)*0.80, ['$p=', num2str(kstest_pval, 3), '$'],'interpreter','latex')
+        disp(['Extreme input dist value: ', num2str(max(abs(x2)))])
+    end
+    
+    
     %% Perturbation analysis
     if runPerturb
         tic
@@ -353,13 +391,15 @@ if runAppendedPCA
     % Plot RMSrates, Figure 2C
     myPlotSettings(width=2.75, height=1.3)
     figure; hold on
+    yline(0.0011, 'k:');
+    yline(0.584, 'k:');
     for ii = 1:numel(initSeedVec)
         errorbar(ii, finalMeanRates(ii), finalMeanRatesSTD(ii), 'o', 'CapSize', 20, 'Color', cm(ii,:), 'MarkerFaceColor', cm(ii,:), 'LineWidth', 2)
     end
     xticks(1:6); xticklabels({'OFF', 'ON', 'ON', 'Chaos', 'Cycle', 'Cycle'})
     xticks(1:6); xticklabels({'Quiescent', 'Stable active', 'Stable active', 'Chaos', 'Cycle', 'Cycle'})
     xlim([0.6, 6.4])
-    ylim([-0.0, 0.65]); box off; yticks([0, 0.5])
+    ylim([-0.05, 0.65]); box off; yticks([0, 0.5])
     ylabel('RMS rates')
     myPlotSettings(width=3, height=2)
     
